@@ -18,9 +18,9 @@ export const AuthProvider = ({ children }) => {
   const signIn = async (userData) => {
     try {
       const res = await loginRequest(userData);
-      setUser(res.data); // data = user info from backend
+      setUser(res.data); 
       setIsAuthenticated(true);
-      return true; // so we can redirect after login
+      return true; 
     } catch (err) {
       setErrors(err.response?.data?.message || "Error al iniciar sesión");
       return false;

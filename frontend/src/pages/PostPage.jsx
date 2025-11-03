@@ -18,7 +18,7 @@ const PostPage = () => {
     useEffect(() => {
       const fetchPost = async () => {
         try {
-          const response = await axios.get(`${API_BASE_URL}/posts/${id}`);
+          const response = await axios.get(`${API_BASE_URL}/api/posts/${id}`);
           setPost(response.data);
         } catch (error) {
           console.error('Error fetching post:', error);

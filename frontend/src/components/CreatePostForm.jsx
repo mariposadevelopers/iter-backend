@@ -19,7 +19,7 @@ const CreatePostForm = () => {
 
     try {
       await axios.post(
-        `${API_BASE_URL}/posts`,
+        `${API_BASE_URL}/api/posts`,
         { title, content },
         { withCredentials: true }
       );

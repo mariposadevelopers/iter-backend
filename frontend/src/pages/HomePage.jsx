@@ -13,7 +13,7 @@ const HomePage = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const res = await axios.get(`${API_BASE_URL}/posts`);
+                const res = await axios.get(`${API_BASE_URL}/api/posts`);
                 setPosts(res.data);
             } catch (error) {
                 console.error('Error fetching posts:', error);
