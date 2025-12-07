@@ -1,4 +1,5 @@
 import Post from "../models/Post.js";
+
 export async function getAllPosts (req, res){
     try {
         const posts = await Post.find();
@@ -33,28 +34,32 @@ export async function postPost (req, res) {
     }
 }
 
-// export async function updatePost (req, res) {
-//     try {
-//         const {name, email, role} = req.body;
-//         const updatedUser = await User.findByIdAndUpdate(req.params.id, {name, email, role});
-//         if (!updatedUser) {
-//             return res.status(404).json({message: "User not found"});
-//         }
-//         res.status(201).json({message : "update completed succesfully "})    
-//     } catch (error) {
-//         res.status(500).json({message: "Internal server error. "})    
-//     }
-// }
-// export async function deleteUser (req, res) {
+export async function updatePost (req, res) {
+    try {
+        console.log(req.title);
+        const {title, content} = req.body;
+        const updatedPost = await Post.findByIdAndUpdate(req.params.id, {title, content});
+        if (!updatedPost) {
+            return res.status(404).json({message: "Post not found"});
+        }
+        res.status(201).json({message : "Update completed succesfully "})    
+    } catch (error) {
+        console.log(error);
+        
+        res.status(500).json({message: "Internal server error. "})    
+    }
+}
 
-//     try {
-//         const deletedUser = await User.findByIdAndDelete(req.params.id);
-//         if(!deleteUser){
-//             return res.status(404).json({message: "User not found"});
-//         }
-//         res.status(201).json({message : "delete completed succesfully "})   
+export async function deletePost (req, res) {
 
-//     } catch (error) {
-//         res.status(500).json({message: "Internal server error."})
-//     }
-// };
+    try {
+        const deletedPost = await Post.findByIdAndDelete(req.params.id);
+        if(!deletedPost){
+            return res.status(404).json({message: "Post not found"});
+        }
+        res.status(201).json({message : "Delete completed succesfully "})   
+
+    } catch (error) {
+        res.status(500).json({message: "Internal server error."})
+    }
+};

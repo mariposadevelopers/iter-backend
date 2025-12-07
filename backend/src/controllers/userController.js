@@ -11,8 +11,8 @@ export async function getAllUsers (req, res){
 
 export async function postUser (req, res) {
     try {
-        const {name, email, role} = req.body; 
-        const user = new User({name, email, role});
+        const {username, email, password, role} = req.body; 
+        const user = new User({username, email, password, role});
         const savedUser = await user.save(); 
         res.status(201).json({savedUser});
     } catch (error) {
