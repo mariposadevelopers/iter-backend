@@ -2,12 +2,15 @@ import express from "express"
 import userRoutes from "./routes/userRoutes.js"
 import postRoutes from "./routes/postRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
+import commentRoutes from "./routes/commentRoutes.js"
 import cors from "cors"
 import dotenv from "dotenv"
 import morgan from "morgan"
 import path from "path"
 import { connectDb } from "./config/db.js";
 import cookieParser from "cookie-parser"
+import mongoose from "mongoose"
+
 
 dotenv.config();
 
@@ -24,8 +27,7 @@ if (process.env.NODE_ENV === "production" && clientUrl) {
     app.use((req, res, next) => {
         if (req.method === 'OPTIONS') {
             return res.sendStatus(200);
-        }
-
+        } 
         next();
     });
 }
@@ -58,6 +60,7 @@ app.use(cookieParser());
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/comments", commentRoutes)
 
 const __dirname = path.resolve(); 
 
@@ -72,3 +75,5 @@ if (process.env.NODE_ENV === "production") {
 app.listen(PORT, () => {
     console.log("SEVER STARTED ON PORT", PORT);
 });
+
+console.log(mongoose.modelNames());
