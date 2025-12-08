@@ -4,6 +4,7 @@ import { createAccessToken } from "../utils/jwt.js";
 export async function login(req, res) {
     const { email, password } = req.body;
     try {
+        
         const userFound = await User.findOne({ email });
         if (!userFound) return res.status(400).json({ message: "User not found" });
 
@@ -14,7 +15,7 @@ export async function login(req, res) {
         res.cookie("token", token, {
             httpOnly: process.env.NODE_ENV !== "development",
             secure: process.env.NODE_ENV !== "development",
-            sameSite: 'Lax',
+            sameSite: 'None',
         });
         res.json({
             id: userFound._id,
