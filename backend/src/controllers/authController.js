@@ -10,12 +10,13 @@ export async function login(req, res) {
 
         const isMatch = password === userFound.password;
         if (!isMatch) return res.status(400).json({ message: "Incorrect Password" });
-
+        const isProduction = process.env.NODE_ENV === "production";
         const token = await createAccessToken({ id: userFound._id });
+        console.log(userFound);
         res.cookie("token", token, {
-            httpOnly: process.env.NODE_ENV !== "development",
-            secure: process.env.NODE_ENV !== "development",
-            sameSite: 'None',
+            httpOnly: isProduction, 
+            secure: isProduction,
+            sameSite: isProduction ? 'None' : 'Lax', 
         });
         res.json({
             id: userFound._id,
