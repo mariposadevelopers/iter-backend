@@ -3,6 +3,7 @@ import userRoutes from "./routes/userRoutes.js"
 import postRoutes from "./routes/postRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
 import commentRoutes from "./routes/commentRoutes.js"
+import channelRoutes from "./routes/channelRoutes.js"
 import cors from "cors"
 import dotenv from "dotenv"
 import morgan from "morgan"
@@ -60,7 +61,8 @@ app.use(cookieParser());
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/comments", commentRoutes)
+app.use("/api/comments", commentRoutes); 
+app.use("/api/channels", channelRoutes); 
 
 const __dirname = path.resolve(); 
 
