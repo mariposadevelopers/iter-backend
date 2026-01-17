@@ -61,7 +61,7 @@ app.use(cookieParser());
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/comments", commentRoutes); 
+app.use("/ap3i/comments", commentRoutes); 
 app.use("/api/channels", channelRoutes); 
 
 const __dirname = path.resolve(); 
