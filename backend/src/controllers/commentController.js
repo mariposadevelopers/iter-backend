@@ -7,7 +7,6 @@ export async function postComment(req, res) {
         return res.status(400).json({ message: "Content and Post ID are required." });
     }
     
-    // Determine the identity source
     const identitySource = {};
     if (user) {
         // Scenario 1: Authenticated User (Teacher)
